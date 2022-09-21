@@ -1,9 +1,9 @@
 public class Node {
 	
-	Object element;
+	DictionaryEntry element;
 	Node next;
 	
-	public Node(Object inputElement){
+	public Node(DictionaryEntry inputElement){
 		this.element = inputElement;
 	}
 

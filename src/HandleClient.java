@@ -28,11 +28,13 @@ public class HandleClient implements Runnable {
 
         // Process input
         Boolean inputValid = false;
-        String inputValue;
+        String inputValue = "";
 
+        // Verifying input
         do {
             try {
                 // Get input from client
+                    // in / out !!!!!!!!!!!!!!!!!!!!!!!!!
 
                 // Check input
 
@@ -41,12 +43,19 @@ public class HandleClient implements Runnable {
         } while (inputValid);
 
         // Check dictionary for value
-        for (int index = 0; index < dictionary.size; index++){
+        DictionaryEntry entry = dictionary.getEntry(inputValue);
+        if (entry != null) {
+            // Definition found
 
-            // TODO NEED TO FIGURE OUT WHAT TO DO WITH LINKED LIST, TEACHER'S GIVEN CODE DOESN'T ALLOW FOR NEXT
+
+        } else {
+            // Definition not found
 
 
         }
+
+
+
 
     }
 }

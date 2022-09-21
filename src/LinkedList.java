@@ -1,4 +1,4 @@
-public class LinkedList{
+public class LinkedList {
 	int size;
 	Node head = null;
 	Node tail = null;
@@ -13,8 +13,7 @@ public class LinkedList{
 		if(tail == null)
 			tail = head;
 	}
-	
-	
+
 	public void addLast(DictionaryEntry element){
 		Node newNode = new Node(element);
 		if(head == null){ // empty linked list
@@ -50,7 +49,7 @@ public class LinkedList{
 		tail = temp;
 		temp.next = null;
 		size--;
-		}
+	}
 	
 	
 	public void add(DictionaryEntry element, int index){
@@ -64,8 +63,7 @@ public class LinkedList{
 		}
 	}
 	
-	public void delete( int index) {
-		
+	public void delete(int index) {
 		if(index>=size) System.out.println("Invalid index");
 		else if(index == 0) deleteFirst();
 		else if(index == size-1)  deleteLast();
@@ -82,8 +80,26 @@ public class LinkedList{
 			size--;
 		}
 	}
-		
-	
+
+	// Returns DictionaryEntry if found, else will return null
+	public DictionaryEntry getEntry(String element) {
+		int index = 0;
+		Node temp = head;
+
+		do {
+			if (temp.element.word.equals(element)) {
+				return temp.element;
+			}
+			else {
+				temp = temp.next;
+				index++;
+			}
+		} while (index < size);
+
+		// Element not found
+		return null;
+	}
+
 	public void displayList(){
 		Node temp = head;
 		while(temp!=null){
@@ -91,4 +107,6 @@ public class LinkedList{
 			temp = temp.next;
 		}
 	}
+
+
 }

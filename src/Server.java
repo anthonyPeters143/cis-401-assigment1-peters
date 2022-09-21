@@ -16,14 +16,14 @@ public class Server {
         while (true) {
             Socket socket = server.accept();
 
-            // CODE BODY
+            // Run handler thread
+            new HandleClient(socket,dictionaryLinkedList);
+
 
         }
-
-
     }
 
-    // Initializes data for dictionary
+    // Initializes data from file input, will place data into returned linked list
     public static LinkedList initializeDictionary(String fileName) throws FileNotFoundException {
         // Create file and LinkedList
         File dictionaryFile = new File("src/data/" + fileName);
@@ -34,26 +34,14 @@ public class Server {
 
         // Input data from txt file to Linked list of dictionaryEntry objects
         while (fileScanner.hasNext()){
-            String fileLine = fileScanner.nextLine();
-
-            // Replace whitespace char with "," then split input by ","
-            String[] splitInput = fileLine.replaceAll("//s",",").split(",");
-
-            // Get word input and definition from input
-            String wordInput = splitInput[0];
-
-            // Index though rest of input array for definition input
-            int splitIndex = 1;
-            String definitionInput = "";
-            while (splitInput.length >= splitIndex) {
-                definitionInput = definitionInput.concat(" " + splitInput[splitIndex]);
-                splitIndex++;
-            }
+            // Input new line of test and split by tab chars
+            String[] splitInput = fileScanner.nextLine().split("\t");
 
             // Add DictionaryEntry to LinkedList
-            dictionaryList.addLast(new DictionaryEntry(wordInput, definitionInput));
+            dictionaryList.addLast(new DictionaryEntry(splitInput[0], splitInput[1]));
         }
 
+        return dictionaryList;
     }
 
 }
