@@ -11,8 +11,8 @@ public class HandleClient implements Runnable {
 
     // Var. Constructor
     HandleClient(Socket clientSocket, LinkedList dictionaryLinkedList) {
-        this.socket = clientSocket;
-        this.dictionary = dictionaryLinkedList;
+        socket = clientSocket;
+        dictionary = dictionaryLinkedList;
     }
 
     @Override
@@ -31,9 +31,6 @@ public class HandleClient implements Runnable {
             // Receiving/Verifying input
             do {
                 try {
-                    // Output prompt
-                    out.println("Enter a word");
-
                     // Get input from client, trim for whitespaces
                     inputValue = in.readLine().trim();
 
@@ -51,7 +48,8 @@ public class HandleClient implements Runnable {
             DictionaryEntry entry = dictionary.getEntry(inputValue);
             if (entry != null) {
                 // Definition found, output definition
-                out.println(entry);
+                out.println(entry.getDefinition());
+
 
             } else {
                 // Definition not found, output name w/ error message
@@ -60,10 +58,6 @@ public class HandleClient implements Runnable {
             }
 
         } catch (Exception e) {}
-
-
-
-
 
 
     }
