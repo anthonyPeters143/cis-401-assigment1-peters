@@ -1,87 +1,48 @@
+/**
+ * Class: LinkedList, Used to store Node objects in a List, will keep track of head
+ * and tail address as well as the size counter
+ *
+ * @author Anthony Peters
+ */
 public class LinkedList {
 	int size;
 	Node head = null;
 	Node tail = null;
-	
-	public void addFirst(DictionaryEntry element){
+
+	/**
+	 * Method: addNode, Adds new Node object to LinkedList object. Will add to end of
+	 * existing List or will create new List with object.
+	 *
+	 * @param element DictionaryEntry, Element to be added to LinkedList
+	 */
+	public void addNode(DictionaryEntry element){
+		// Create new Node object
 		Node newNode = new Node(element);
-		
-		newNode.next = head;
-		head = newNode;
+
+		if (head == null) {
+			// LinkedList is empty, create add new object to end and beginning of list
+			head = newNode;
+			tail = newNode;
+		}
+
+		// Add new object to tail of last object in List
+		tail.next = newNode;
+
+		// Move tail address to the new object
+		tail = tail.next;
+
+		// Increase size counter of LinkedList object
 		size++;
-		
-		if(tail == null)
-			tail = head;
 	}
 
-	public void addLast(DictionaryEntry element){
-		Node newNode = new Node(element);
-		if(head == null){ // empty linked list
-			head = tail = newNode;
-		}
-		
-	   tail.next = newNode;
-	   tail = tail.next;
-	   size++;
-	}
-	
-	public void deleteFirst(){
-		if(head == null){
-			System.out.println("Empty list. Cannot delete");
-		}
-		
-		if(head == tail)
-			head = tail = null;
-		
-		head = head.next;
-		size--;
-	}
-	
-	public void deleteLast(){
-		if(tail == null){
-			System.out.println("Empty list. Cannot delete");
-		}
-		Node temp = head;
-		
-		while(temp.next!=tail)
-			temp = temp.next;
-		
-		tail = temp;
-		temp.next = null;
-		size--;
-	}
-	
-	
-	public void add(DictionaryEntry element, int index){
-		if(index < 0 || index > size) 
-			System.out.println("Invalid index");
-		else if(index == 0) addFirst(element);
-		else if(index == size) addLast(element);
-		else {
-		Node newNode = new Node(element);
-		Node temp = head;
-		}
-	}
-	
-	public void delete(int index) {
-		if(index>=size) System.out.println("Invalid index");
-		else if(index == 0) deleteFirst();
-		else if(index == size-1)  deleteLast();
-		else 
-		{
-			Node temp = head;
-			for(int i=0; i<index-1; i++){
-				temp = temp.next;
-			}
-			
-			Node current = temp.next;
-			temp.next = current.next;
-			
-			size--;
-		}
-	}
-
-	// Returns DictionaryEntry if found, else will return null
+	/**
+	 * Method: getEntry, Will search through LinkedList for passed String value.
+	 * Will return DictionaryEntry object with word value matching passed String
+	 * value or null.
+	 *
+	 * @param element String, Word value to search through LinkedList for
+	 * @return DictionaryEntry, Found DictionaryEntry object
+	 */
 	public DictionaryEntry getEntry(String element) {
 		int index = 0;
 		Node temp = head;
@@ -99,14 +60,5 @@ public class LinkedList {
 		// Element not found
 		return null;
 	}
-
-	public void displayList(){
-		Node temp = head;
-		while(temp!=null){
-			System.out.println(temp.element);
-			temp = temp.next;
-		}
-	}
-
 
 }
