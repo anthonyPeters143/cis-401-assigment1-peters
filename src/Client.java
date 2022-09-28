@@ -14,7 +14,8 @@ public class Client {
 
     /**
      * Method: main, Used to drive client side of socket connection to IP:_____ server.
-     * Will prompt and send word input to server, then receive and output response.
+     * Will prompt and send word input to server, then receive and output definition
+     * response.
      *
      * @param args System input
      * @throws Exception Suppress exception from socket connection
@@ -43,7 +44,9 @@ public class Client {
 
         // Output string to user
         System.out.println(responseOutput);
-    }
 
+        // Exit software
+        System.exit(1);
+    }
 
 }
