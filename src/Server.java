@@ -5,7 +5,8 @@ import java.util.Scanner;
 
 /**
  * Class: Server, Used to connect with sockets from multiple clients. Creates
- * dictionary database, then create client threads for connections.
+ * dictionary database, then create client threads for connections. IP address
+ * of server is 192.168.0.187.
  *
  * @author Anthony Peters
  */

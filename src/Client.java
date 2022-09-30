@@ -5,7 +5,7 @@ import java.net.Socket;
 import java.util.Scanner;
 
 /**
- * Class: Client, Used to connect with socket from IP:______. Sends a word input
+ * Class: Client, Used to connect with socket from IP:192.168.0.187. Sends a word input
  * then receives a response definition from Server.
  *
  * @author Anthony Peters
@@ -13,7 +13,7 @@ import java.util.Scanner;
 public class Client {
 
     /**
-     * Method: main, Used to drive client side of socket connection to IP:_____ server.
+     * Method: main, Used to drive client side of socket connection to IP:192.168.0.187 server.
      * Will prompt and send word input to server, then receive and output definition
      * response.
      *
@@ -26,9 +26,8 @@ public class Client {
         Scanner input = new Scanner(System.in);
         String responseInput, responseOutput;
 
-        // Set up socket connection
-        // TODO WILL NEED TO CHANGE TO COMPUTER IP BEFORE TURNING IN
-        Socket socket = new Socket("localhost",8000);
+        // Set up socket connection with IP address 192.168.0.187
+        Socket socket = new Socket("192.168.0.187",8000);
         PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
         BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 
