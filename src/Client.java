@@ -18,7 +18,7 @@ public class Client {
      * response.
      *
      * @param args System input
-     * @throws Exception Suppress exception from socket connection
+     * @throws Exception Connection exception error
      */
     public static void main(String[] args) throws Exception
     {
@@ -27,19 +27,25 @@ public class Client {
         String responseInput, responseOutput;
 
         // Set up socket connection with IP address 192.168.0.187
-        Socket socket = new Socket("192.168.0.187",8000);
-        PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
-        BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+        try {
+            Socket socket = new Socket("192.168.0.187",8000);
+            PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
+            BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 
-        // Prompts and store input
-        System.out.println("Enter a word:");
-        responseInput = input.next();
+            // Prompts and store input
+            System.out.println("Enter a word:");
+            responseInput = input.next();
 
-        // Send input to server
-        out.println(responseInput);
+            // Send input to server
+            out.println(responseInput);
 
-        // Get output from server
-        responseOutput = in.readLine();
+            // Get output from server
+            responseOutput = in.readLine();
+
+        } catch (Exception e) {
+            // Connection exception error
+            responseOutput = "Error socket not found";
+        }
 
         // Output string to user
         System.out.println(responseOutput);
